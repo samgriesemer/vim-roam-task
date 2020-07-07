@@ -139,6 +139,15 @@ class SelectedTasks(object):
             vim.command(command.format(location_override, vimwikitask.uuid))
 
         self.save_action('edit')
+        
+    @errors.pretty_exception_handler
+    def open_note(self):
+        for vimwikitask in self.tasks:
+            # note: tasknote must be installed
+            command = '! tasknote {0}'
+            vim.command(command.format(vimwikitask.uuid))
+
+        self.save_action('note')
 
     @errors.pretty_exception_handler
     def link(self):

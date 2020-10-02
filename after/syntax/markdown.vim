@@ -12,8 +12,8 @@ syntax match TaskWikiTask /\s*\* \[.\]\s.*$/
                   \ mkdCode,
                   \ mkdMath,
                   \ mkdNonListItem,
-                  \ mkdListItem,
-                  \ @Spell
+                  \ mkdListItem
+                  "\ @Spell
 
 " Conceal the UUID
 execute 'syn match TaskWikiTaskUuid containedin=TaskWikiTask /\v#([A-Z]:)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/'.s:conceal

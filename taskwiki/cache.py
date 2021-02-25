@@ -110,7 +110,8 @@ class TaskCache(object):
         default_rc = util.get_var('taskwiki_taskrc_location') or '~/.taskrc'
         default_data = util.get_var('taskwiki_data_location') or None
         extra_warrior_defs = util.get_var('taskwiki_extra_warriors', {})
-        markup_syntax = vim.eval("vimwiki#vars#get_wikilocal('syntax')") or 'default'
+        #markup_syntax = vim.eval("vimwiki#vars#get_wikilocal('syntax')") or 'default'
+        markup_syntax = 'markdown'
 
         # Validate markup choice and set it
         if markup_syntax in ["default", "markdown"]:

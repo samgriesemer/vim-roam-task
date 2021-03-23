@@ -43,6 +43,12 @@ class WholeBuffer(object):
         c.update_vwtasks_in_buffer()
         c.evaluate_viewports()
         c.buffer.push()
+        
+        # TODO: add autowrite option
+        # grab the cache BufferProxy object, get the true vim buffer, check if it's
+        # modified and write it if so
+        if util.get_buffer(c.buffer.buffer_number).options['modified']:
+            vim.command('w')
 
     @staticmethod
     @errors.pretty_exception_handler

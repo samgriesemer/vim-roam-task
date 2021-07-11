@@ -81,7 +81,7 @@ execute "command! -buffer -range TaskWikiStart :<line1>,<line2>"  . g:taskwiki_p
 execute "command! -buffer -range TaskWikiStop :<line1>,<line2>"   . g:taskwiki_py . "SelectedTasks().stop()"
 execute "command! -buffer -range TaskWikiDone :<line1>,<line2>"   . g:taskwiki_py . "SelectedTasks().done()"
 execute "command! -buffer -range TaskWikiRedo :<line1>,<line2>"   . g:taskwiki_py . "SelectedTasks().redo()"
-execute "command! -buffer -range TaskWikiOpenNote :<line1>,<line2>" . g:taskwiki_py . "SelectedTasks().open_note()"
+execute "command! -buffer -range TaskWikiOpenNote :<line1>,<line2>" . g:taskwiki_py . "SelectedTasks().note()"
 
 execute "command! -buffer -range -nargs=* TaskWikiSort :<line1>,<line2>"     . g:taskwiki_py . "SelectedTasks().sort(<q-args>)"
 execute "command! -buffer -range -nargs=* TaskWikiAnnotate :<line1>,<line2>" . g:taskwiki_py . "SelectedTasks().annotate(<q-args>)"
@@ -99,7 +99,7 @@ if !hasmapto('<Plug>VimwikiFollowLink')
   nmap <Plug>NoVimwikiFollowLink <Plug>VimwikiFollowLink
 endif
 
-"execute "nnoremap <silent><buffer> <CR> :" . g:taskwiki_py . "Mappings.task_info_or_vimwiki_follow_link()<CR>"
+execute "nnoremap <silent><buffer> <CR> :" . g:taskwiki_py . "Mappings.task_info_or_vimwiki_follow_link()<CR>"
 
 " Leader-related mappings. Mostly <Leader>t + <first letter of the action>
 if !exists('g:taskwiki_suppress_mappings')

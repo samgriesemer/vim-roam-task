@@ -147,11 +147,16 @@ class SelectedTasks(object):
         self.save_action('edit')
         
     @errors.pretty_exception_handler
-    def open_note(self):
+    def note(self):
         for vimwikitask in self.tasks:
             # note: tasknote must be installed
             command = '! tasknote {0}'
-            vim.command(command.format(vimwikitask.uuid))
+            #vim.command(command.format(vimwikitask.uuid))
+            uuid = str(vimwikitask.uuid)
+
+            path = util.get_var('taskwiki_note_path')
+            vim.command('call wiki#page#open("{}.md")'.format(os.path.join(path, uuid)))
+            #vim.command('e {0}'.format(os.path.join(path, uuid))+'.md')
 
         self.save_action('note')
 
@@ -292,12 +297,13 @@ class Mappings(object):
         ])
 
         if inside_vimwiki_link:
-            vim.command('VimwikiFollowLink')
+            vim.command('WikiLinkFollow')
             return
 
         # No link detected, check for viewport or a task
         if cache().vwtask[row] is not None:
-            SelectedTasks().info()
+            #SelectedTasks().info()
+            SelectedTasks().note()
             return
         else:
             port = viewport.ViewPort.from_line(row, cache())
@@ -307,7 +313,7 @@ class Mappings(object):
 
         # No link detected, not a viewport or a task, so delegate to
         # VimwikiFollowLink for link creation
-        vim.command('VimwikiFollowLink')
+        vim.command('WikiLinkFollow')
 
 
 
